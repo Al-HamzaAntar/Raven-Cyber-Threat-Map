@@ -1,0 +1,12 @@
+[
+  {
+    "source": { "lat": 37.7749, "lon": -122.4194 },
+    "target": { "lat": 35.6895, "lon": 139.6917 },
+    "type": "malware"
+  },
+  {
+    "source": { "lat": 48.8566, "lon": 2.3522 },
+    "target": { "lat": 40.7128, "lon": -74.006 },
+    "type": "phishing"
+  }
+]

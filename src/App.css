@@ -1,0 +1,166 @@
+body, .App {
+  background: #181a1b;
+  color: #e0e0e0;
+  font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background: #232526;
+  color: #e0e0e0;
+  border-bottom: 1px solid #333;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  z-index: 10;
+}
+
+.panel {
+  background: #232526;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 #000a;
+  padding: 1rem;
+  margin: 0.5rem;
+  color: #e0e0e0;
+  font-size: 0.98rem;
+  border: 1px solid #333;
+}
+
+.panel-title {
+  color: #7ec3fa;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.live-attacks-panel {
+  position: absolute;
+  left: 2vw;
+  top: 8vh;
+  width: 36vw;
+  max-width: 500px;
+  max-height: 40vh;
+  overflow-y: auto;
+  z-index: 5;
+}
+
+.ip-lookup-panel {
+  position: absolute;
+  left: 2vw;
+  bottom: 8vh;
+  width: 32vw;
+  max-width: 400px;
+  z-index: 5;
+}
+
+.random-data-panel {
+  position: absolute;
+  left: 2vw;
+  bottom: 2vh;
+  width: 32vw;
+  max-width: 400px;
+  z-index: 5;
+}
+
+.top-control-panel {
+  position: absolute;
+  right: 2vw;
+  top: 2vh;
+  display: flex;
+  align-items: center;
+  background: #232526;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px 0 #000a;
+  padding: 0.5rem 1.5rem;
+  z-index: 20;
+  gap: 0.7rem;
+}
+
+input, select, button {
+  background: #232526;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 0.4em 0.7em;
+  font-size: 1rem;
+  outline: none;
+  margin-right: 0.5em;
+  transition: border 0.2s;
+}
+input:focus, select:focus, button:focus {
+  border: 1.5px solid #7ec3fa;
+}
+button {
+  cursor: pointer;
+  font-weight: 500;
+  background: #232526;
+  color: #7ec3fa;
+  border: 1px solid #444;
+  transition: background 0.2s, color 0.2s;
+}
+button:hover {
+  background: #2a2a40;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #232526;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+/* Table styles for live attacks */
+.live-attacks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.97rem;
+}
+.live-attacks-table th, .live-attacks-table td {
+  padding: 0.3em 0.7em;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+.live-attacks-table th {
+  color: #7ec3fa;
+  font-weight: 600;
+  background: #232526;
+}
+.live-attacks-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Utility */
+.flex {
+  display: flex;
+  align-items: center;
+}
+.gap {
+  gap: 0.5em;
+}
+
+/* For country code circles */
+.country-code {
+  display: inline-block;
+  min-width: 2.2em;
+  text-align: center;
+  font-weight: bold;
+  background: #232526;
+  color: #7ec3fa;
+  border-radius: 50%;
+  border: 1px solid #444;
+  margin: 0 0.3em;
+  font-size: 1.1em;
+}
+
+/* For arrow between source and target */
+.arrow {
+  color: #7ec3fa;
+  font-size: 1.2em;
+  margin: 0 0.5em;
+}

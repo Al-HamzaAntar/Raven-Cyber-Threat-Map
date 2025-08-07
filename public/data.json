@@ -98,5 +98,50 @@
     "source": { "lat": 55.9533, "lon": -3.1883 },
     "target": { "lat": 19.0760, "lon": 72.8777 },
     "type": "ddos"
+  }, 
+  {
+    "source": { "lat": 37.7749, "lon": -122.4194 },
+    "target": { "lat": 28.6139, "lon": 77.2090 },
+    "type": "malware"
+  },
+  {
+    "source": { "lat": 34.0522, "lon": -118.2437 },
+    "target": { "lat": 1.3521, "lon": 103.8198 },
+    "type": "phishing"
+  },
+  {
+    "source": { "lat": 40.4168, "lon": -3.7038 },
+    "target": { "lat": 55.7558, "lon": 37.6173 },
+    "type": "ransomware"
+  },
+  {
+    "source": { "lat": 35.6762, "lon": 139.6503 },
+    "target": { "lat": 37.7749, "lon": -122.4194 },
+    "type": "malware"
+  },
+  {
+    "source": { "lat": 34.0522, "lon": -118.2437 },
+    "target": { "lat": 40.4168, "lon": -3.7038 },
+    "type": "phishing"
+  },
+  {
+    "source": { "lat": 39.9042, "lon": 116.4074 },
+    "target": { "lat": 55.9533, "lon": -3.1883 },
+    "type": "ransomware"
+  },
+  {
+    "source": { "lat": 51.5074, "lon": -0.1278 },
+    "target": { "lat": 37.5665, "lon": 126.9780 },
+    "type": "ddos"
+  },
+  {
+    "source": { "lat": 19.0760, "lon": 72.8777 },
+    "target": { "lat": 40.7128, "lon": -74.0060 },
+    "type": "malware"
+  },
+  {
+    "source": { "lat": 1.3521, "lon": 103.8198 },
+    "target": { "lat": 48.8566, "lon": 2.3522 },
+    "type": "phishing"
   }
 ]

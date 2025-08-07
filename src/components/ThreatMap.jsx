@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import * as d3 from 'd3';
 import * as topojson from 'topojson-client';
 
@@ -43,9 +43,20 @@ const locations = [
 ];
 const threatTypes = ['malware', 'phishing', 'ddos', 'ransomware'];
 
-const ThreatMap = ({ theme = 'dark', mode = 'live', onAttackSelect, onNewAttack }) => {
+const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, onNewAttack }, ref) => {
   const svgRef = useRef();
   const attackInterval = useRef();
+
+  useImperativeHandle(ref, () => ({
+    animateAttacks: (attacks, delay = 500) => {
+      attacks.forEach((attack, i) => {
+        setTimeout(() => {
+          drawAttack(attack);
+          if (onNewAttack) onNewAttack(attack);
+        }, i * delay);
+      });
+    }
+  }));
 
   useEffect(() => {
     const width = window.innerWidth * 0.75;
@@ -148,6 +159,6 @@ const ThreatMap = ({ theme = 'dark', mode = 'live', onAttackSelect, onNewAttack 
   }
 
   return <svg ref={svgRef}></svg>;
-};
+});
 
 export default ThreatMap;

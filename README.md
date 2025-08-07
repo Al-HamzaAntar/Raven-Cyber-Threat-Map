@@ -37,10 +37,7 @@ src/
 ### Installation
 
 1. Clone the repository:
-<<<<<<< HEAD
 
-=======
->>>>>>> 25312a2715eaf9889d416766675fee331387f53c
    ```sh
    git clone https://github.com/yourusername/raven-cyber-threat-map.git
    cd raven-cyber-threat-map

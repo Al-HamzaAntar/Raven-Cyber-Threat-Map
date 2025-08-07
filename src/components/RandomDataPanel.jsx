@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-
-const dataTypes = ['Countries', 'Cities', 'IPs', 'Coordinates'];
+import { generateAttacksWithDelay } from '../utils/attackGenerator.js';
 
 const RandomDataPanel = ({ onGenerate }) => {
   const [attacks, setAttacks] = useState(10);
@@ -19,22 +18,30 @@ const RandomDataPanel = ({ onGenerate }) => {
 
   const handleGenerate = () => {
     if (onGenerate) {
+      const config = {
+        includeCountries: selected.Countries,
+        includeCities: selected.Cities,
+        includeIPs: selected.IPs,
+        includePorts: selected.Coordinates
+      };
+      
       onGenerate({
         attacks: Number(attacks),
         time: Number(time),
         delay: Number(delay),
-        selected,
+        config
       });
     }
   };
 
   return (
     <div className="panel random-data-panel">
-      <div className="panel-title">Generate Random Data</div>
+      <div className="panel-title">Generate Random Data (247 Countries)</div>
       <div style={{display:'flex',flexWrap:'wrap',gap:8,alignItems:'center'}}>
         <input
           type="number"
           min={1}
+          max={1000}
           value={attacks}
           onChange={e => setAttacks(e.target.value.replace(/[^\d]/g, ''))}
           placeholder="Attacks"
@@ -56,7 +63,7 @@ const RandomDataPanel = ({ onGenerate }) => {
           placeholder="Delay (ms)"
           style={{width:80}}
         />
-        {dataTypes.map(type => (
+        {Object.keys(selected).map(type => (
           <button
             key={type}
             onClick={() => handleToggle(type)}

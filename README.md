@@ -2,13 +2,7 @@
 
 Raven Cyber Threat Map is a React-based web application that visualizes global cyber threat data on an interactive map.
 
-<<<<<<< HEAD
 <img src="./public/assets/RavenCyberThreatMap.png" alt="Raven CyberThreat Map" />
-=======
-<img src="C:\Users\pc\Desktop\Raven-Cyber-Threat-Map\public\assets\RavenCyberThreatMap.png" alt="Raven CyberThreat Map" />
-
-
->>>>>>> 25312a2715eaf9889d416766675fee331387f53c
 
 ## Features
 

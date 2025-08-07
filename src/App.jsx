@@ -17,6 +17,9 @@ function App() {
   const [attacks, setAttacks] = useState([]);
   const [countryStats, setCountryStats] = useState({});
   const [customizations, setCustomizations] = useState({});
+  const [showIPLookup, setShowIPLookup] = useState(false);
+  const [showRandomData, setShowRandomData] = useState(false);
+  const [showLiveAttacks, setShowLiveAttacks] = useState(true);
   const threatMapRef = useRef();
 
   // Update country stats when attacks change
@@ -54,12 +57,29 @@ function App() {
     }));
   };
 
+  // Toggle functions for panels
+  const handleToggleRandomData = () => {
+    setShowRandomData(!showRandomData);
+  };
+
+  const handleToggleLiveAttacks = () => {
+    setShowLiveAttacks(!showLiveAttacks);
+  };
+
   return (
     <div className={`App theme-${theme}`} style={{ height: '100vh', width: '100vw', position: 'relative', overflow: 'hidden' }}>
-      <TopControlPanel theme={theme} setTheme={setTheme} mode={mode} setMode={setMode} />
-      <LiveAttacksPanel attacks={attacks} />
-      <IPLookupPanel />
-      <RandomDataPanel onGenerate={handleGenerate} />
+      <TopControlPanel 
+        theme={theme} 
+        setTheme={setTheme} 
+        mode={mode} 
+        setMode={setMode}
+        onToggleRandomData={handleToggleRandomData}
+        onToggleLiveAttacks={handleToggleLiveAttacks}
+        onShowIPLookup={() => setShowIPLookup(v => !v)}
+      />
+      {showLiveAttacks && <LiveAttacksPanel attacks={attacks} />}
+      {showIPLookup && <IPLookupPanel />}
+      {showRandomData && <RandomDataPanel onGenerate={handleGenerate} />}
       <CountryStatsPanel stats={countryStats} />
       <CustomizationPanel onCustomize={handleCustomize} />
       <div style={{ width: '100vw', height: '100vh', position: 'absolute', left: 0, top: 0, zIndex: 1 }}>

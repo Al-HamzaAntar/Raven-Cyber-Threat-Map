@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import ThreatMap from './components/ThreatMap';
 import TopControlPanel from './components/TopControlPanel';
 import LiveAttacksPanel from './components/LiveAttacksPanel';
@@ -8,30 +8,42 @@ import CountryStatsPanel from './components/CountryStatsPanel';
 import CustomizationPanel from './components/CustomizationPanel';
 import { generateRandomAttack, generateAttacksWithDelay } from './utils/attackGenerator.js';
 import { calculateCountryStats } from './utils/statsCalculator.js';
+import useAppStore from './stores/useAppStore.js';
 import './App.css';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
-  const [mode, setMode] = useState('live');
-  const [selectedAttack, setSelectedAttack] = useState(null);
-  const [attacks, setAttacks] = useState([]);
-  const [countryStats, setCountryStats] = useState({});
-  const [customizations, setCustomizations] = useState({});
-  const [showIPLookup, setShowIPLookup] = useState(false);
-  const [showRandomData, setShowRandomData] = useState(false);
-  const [showLiveAttacks, setShowLiveAttacks] = useState(true);
   const threatMapRef = useRef();
+  
+  // Zustand store state and actions
+  const {
+    theme,
+    mode,
+    selectedAttack,
+    attacks,
+    countryStats,
+    customizations,
+    showIPLookup,
+    showRandomData,
+    showLiveAttacks,
+    setTheme,
+    setMode,
+    addAttack,
+    setSelectedAttack,
+    setShowIPLookup,
+    setShowRandomData,
+    setShowLiveAttacks,
+    handleCustomize
+  } = useAppStore();
 
   // Update country stats when attacks change
   React.useEffect(() => {
     const stats = calculateCountryStats(attacks);
-    setCountryStats(stats);
+    // Update country stats in store
   }, [attacks]);
 
-  // Collect attacks from ThreatMap
+  // Handle new attack from ThreatMap
   const handleNewAttack = (attack) => {
-    setAttacks(prev => [...prev.slice(-999), attack]); // Keep last 1000 for large-scale
-    setSelectedAttack(attack);
+    addAttack(attack);
   };
 
   // Generate random attacks based on config
@@ -49,23 +61,6 @@ function App() {
     }
   };
 
-  // Handle customization
-  const handleCustomize = ({ type, value, color }) => {
-    setCustomizations(prev => ({
-      ...prev,
-      [type === 'country' ? value : `city_${value}`]: color
-    }));
-  };
-
-  // Toggle functions for panels
-  const handleToggleRandomData = () => {
-    setShowRandomData(!showRandomData);
-  };
-
-  const handleToggleLiveAttacks = () => {
-    setShowLiveAttacks(!showLiveAttacks);
-  };
-
   return (
     <div className={`App theme-${theme}`} style={{ height: '100vh', width: '100vw', position: 'relative', overflow: 'hidden' }}>
       <TopControlPanel 
@@ -73,8 +68,8 @@ function App() {
         setTheme={setTheme} 
         mode={mode} 
         setMode={setMode}
-        onToggleRandomData={handleToggleRandomData}
-        onToggleLiveAttacks={handleToggleLiveAttacks}
+        onToggleRandomData={() => setShowRandomData(!showRandomData)}
+        onToggleLiveAttacks={() => setShowLiveAttacks(!showLiveAttacks)}
         onShowIPLookup={() => setShowIPLookup(v => !v)}
       />
       {showLiveAttacks && <LiveAttacksPanel attacks={attacks} />}

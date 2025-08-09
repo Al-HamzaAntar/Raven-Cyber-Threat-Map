@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import { countries, getAllCities } from '../data/countries.js';
+import useAppStore from '../stores/useAppStore.js';
 
-const CustomizationPanel = ({ onCustomize }) => {
+const CustomizationPanel = ({ theme }) => {
+  const { customizations, updateCustomization, removeCustomization } = useAppStore();
+  
   const [selectedCountry, setSelectedCountry] = useState('US');
   const [selectedCity, setSelectedCity] = useState('');
   const [color, setColor] = useState('#7ec3fa');
   const [customizationType, setCustomizationType] = useState('country'); // 'country' or 'city'
 
   const handleApply = () => {
-    if (onCustomize) {
-      const customization = {
-        type: customizationType,
-        value: customizationType === 'country' ? selectedCountry : selectedCity,
-        color
-      };
-      onCustomize(customization);
-    }
+    const key = customizationType === 'country' ? selectedCountry : `city_${selectedCity}`;
+    updateCustomization(key, color);
+  };
+
+  const handleRemove = () => {
+    const key = customizationType === 'country' ? selectedCountry : `city_${selectedCity}`;
+    removeCustomization(key);
   };
 
   const getCitiesForCountry = (countryCode) => {
@@ -23,8 +25,19 @@ const CustomizationPanel = ({ onCustomize }) => {
     return country ? country.cities : [];
   };
 
+  const getCurrentCustomization = () => {
+    const key = customizationType === 'country' ? selectedCountry : `city_${selectedCity}`;
+    return customizations[key];
+  };
+
   return (
-    <div className="panel customization-panel" style={{position:'absolute',right:'2vw',top:'12vh',width:320,zIndex:5}}>
+    <div className={`panel customization-panel theme-${theme}`} style={{
+      position: 'absolute',
+      right: '2vw',
+      top: '12vh',
+      width: 320,
+      zIndex: 5
+    }}>
       <div className="panel-title">Advanced Customization</div>
       <div style={{display:'flex',flexDirection:'column',gap:10}}>
         <label>
@@ -80,9 +93,65 @@ const CustomizationPanel = ({ onCustomize }) => {
           />
         </label>
         
-        <button onClick={handleApply}>
-          Apply {customizationType === 'country' ? 'Country' : 'City'} Customization
-        </button>
+        {getCurrentCustomization() && (
+          <div style={{
+            padding: '8px',
+            background: theme === 'dark' ? '#333' : '#f0f0f0',
+            borderRadius: '4px',
+            fontSize: '0.9em'
+          }}>
+            Current: <span style={{color: getCurrentCustomization()}}>
+              {getCurrentCustomization()}
+            </span>
+          </div>
+        )}
+        
+        <div style={{display: 'flex', gap: '8px'}}>
+          <button onClick={handleApply} style={{flex: 1}}>
+            Apply {customizationType === 'country' ? 'Country' : 'City'} Customization
+          </button>
+          {getCurrentCustomization() && (
+            <button onClick={handleRemove} style={{
+              background: '#ff4444',
+              color: 'white',
+              border: 'none',
+              padding: '8px',
+              borderRadius: '4px',
+              cursor: 'pointer'
+            }}>
+              Remove
+            </button>
+          )}
+        </div>
+        
+        {Object.keys(customizations).length > 0 && (
+          <div style={{marginTop: '16px'}}>
+            <div style={{fontSize: '0.9em', marginBottom: '8px'}}>Active Customizations:</div>
+            <div style={{maxHeight: '120px', overflowY: 'auto'}}>
+              {Object.entries(customizations).map(([key, color]) => (
+                <div key={key} style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '4px 8px',
+                  margin: '2px 0',
+                  background: theme === 'dark' ? '#333' : '#f0f0f0',
+                  borderRadius: '4px',
+                  fontSize: '0.8em'
+                }}>
+                  <span>{key.startsWith('city_') ? key.replace('city_', '') : key}</span>
+                  <div style={{
+                    width: '20px',
+                    height: '20px',
+                    backgroundColor: color,
+                    borderRadius: '3px',
+                    border: '1px solid #666'
+                  }}></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

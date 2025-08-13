@@ -150,7 +150,7 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
     };
 
     // Uncomment the line below to enable auto-rotation
-    // const rotationInterval = setInterval(autoRotate, 50);
+    // const rotationInterval = setInterval(autoRotate, -50);
 
     // Cleanup function
     return () => {

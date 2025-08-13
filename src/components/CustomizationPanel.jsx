@@ -58,7 +58,7 @@ const CustomizationPanel = ({ theme }) => {
             <select 
               value={selectedCountry} 
               onChange={e => setSelectedCountry(e.target.value)}
-              style={{marginLeft:8}}
+              style={{marginLeft:0}}
             >
               {countries.map(c => (
                 <option key={c.code} value={c.code}>
@@ -98,7 +98,8 @@ const CustomizationPanel = ({ theme }) => {
             padding: '8px',
             background: theme === 'dark' ? '#333' : '#f0f0f0',
             borderRadius: '4px',
-            fontSize: '0.9em'
+            fontSize: '0.9em',
+            color: theme === 'dark' ? '#fff' : '#000',
           }}>
             Current: <span style={{color: getCurrentCustomization()}}>
               {getCurrentCustomization()}
@@ -136,6 +137,7 @@ const CustomizationPanel = ({ theme }) => {
                   padding: '4px 8px',
                   margin: '2px 0',
                   background: theme === 'dark' ? '#333' : '#f0f0f0',
+                  color: theme === 'dark' ? '#fff' : '#000',
                   borderRadius: '4px',
                   fontSize: '0.8em'
                 }}>

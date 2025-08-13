@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { calculateCountryStats } from '../utils/statsCalculator.js';
 
-const useAppStore = create(
+ const useAppStore = create(
   devtools(
     (set, get) => ({
       // UI State

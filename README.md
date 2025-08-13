@@ -37,9 +37,23 @@ src/
 index.html
 package.json
 vite.config.js
+public/
+  countries-110m.json
+  data.json
+  assets/
+    intro.gif
+    RavenCyberThreatMap.png
+src/
+  App.css
+  App.jsx
+  main.jsx
+  components/
+    IPLookupPanel.jsx
+    LiveAttacksPanel.jsx
+    RandomDataPanel.jsx
+    ThreatMap.jsx
+    TopControlPanel.jsx
 ```
-
----
 
 ## Getting Started
 

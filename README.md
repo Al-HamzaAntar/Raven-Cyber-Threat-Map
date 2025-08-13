@@ -41,7 +41,6 @@ public/
   countries-110m.json
   data.json
   assets/
-    intro.gif
     RavenCyberThreatMap.png
 src/
   App.css

@@ -6,7 +6,7 @@ import IPLookupPanel from './components/IPLookupPanel';
 import RandomDataPanel from './components/RandomDataPanel';
 import CountryStatsPanel from './components/CountryStatsPanel';
 import CustomizationPanel from './components/CustomizationPanel';
-import { generateRandomAttack, generateAttacksWithDelay } from './utils/attackGenerator.js';
+import { generateAttacksWithDelay } from './utils/attackGenerator.js';
 import { calculateCountryStats } from './utils/statsCalculator.js';
 import useAppStore from './stores/useAppStore.js';
 import './App.css';

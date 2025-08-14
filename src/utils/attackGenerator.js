@@ -57,17 +57,13 @@ export const generateRandomAttack = (config = {}) => {
   };
 };
 
-export const generateBatchAttacks = (count, config = {}) => {
+export const generateAttacksWithDelay = (count, delay, config = {}) => {
   const attacks = [];
   for (let i = 0; i < count; i++) {
-    attacks.push(generateRandomAttack(config));
+    attacks.push({
+      ...generateRandomAttack(config),
+      timestamp: Date.now() + (i * delay)
+    });
   }
   return attacks;
-};
-
-export const generateAttacksWithDelay = (count, delay, config = {}) => {
-  return generateBatchAttacks(count, config).map((attack, index) => ({
-    ...attack,
-    timestamp: Date.now() + (index * delay)
-  }));
 };

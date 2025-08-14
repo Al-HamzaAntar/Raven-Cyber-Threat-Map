@@ -13,53 +13,94 @@ Raven Cyber Threat Map is a modern React web application for visualizing global 
 - ⚡ Live attack simulation & random threat data
 - 📊 Displays cyber threat data from JSON sources
 - 📱 Responsive UI built with React
+- 🗂 Modular component-based architecture
+- 🛠 Easy to extend with new threat sources or panels
 
 ---
 
 ## Project Structure
 
 ```
+node_modules/
 public/
   ├─ assets/
-  │    └─ RavenCyberThreatMap.png
   ├─ countries-110m.json
   └─ data.json
 src/
-  ├─ App.jsx
+  ├─ components/
+  │    ├─ CountryStatsPanel.jsx
+  │    ├─ CustomizationPanel.jsx
+  │    ├─ IPLookupPanel.jsx
+  │    ├─ LiveAttacksPanel.jsx
+  │    ├─ RandomDataPanel.jsx
+  │    ├─ ThreatMap.jsx
+  │    └─ TopControlPanel.jsx
+  ├─ data/
+  │    └─ countries.js
+  ├─ stores/
+  │    └─ useAppStore.js
+  ├─ utils/
+  │    ├─ attackGenerator.js
+  │    └─ statsCalculator.js
   ├─ App.css
+  ├─ App.jsx
   ├─ main.jsx
-  └─ components/
-       ├─ IPLookupPanel.jsx
-       ├─ LiveAttacksPanel.jsx
-       ├─ RandomDataPanel.jsx
-       ├─ ThreatMap.jsx
-       └─ TopControlPanel.jsx
 index.html
+package-lock.json
 package.json
+README.md
 vite.config.js
-public/
-  countries-110m.json
-  data.json
-  assets/
-    RavenCyberThreatMap.png
-src/
-  App.css
-  App.jsx
-  main.jsx
-  components/
-    IPLookupPanel.jsx
-    LiveAttacksPanel.jsx
-    RandomDataPanel.jsx
-    ThreatMap.jsx
-    TopControlPanel.jsx
 ```
+
+---
+
+## File Overview
+
+- **public/**: Static assets & data files
+  - **assets/**: Images and icons
+  - **countries-110m.json**: World map TopoJSON data
+  - **data.json**: Sample cyber threat data
+- **src/**: Source code
+  - **components/**: UI panels & map visualization
+    - **CountryStatsPanel.jsx**: Country-specific threat stats
+    - **CustomizationPanel.jsx**: Map and UI customization
+    - **IPLookupPanel.jsx**: IP geolocation and threat intelligence
+    - **LiveAttacksPanel.jsx**: Real-time attack simulation
+    - **RandomDataPanel.jsx**: Random threat data generator
+    - **ThreatMap.jsx**: D3/TopoJSON map visualization
+    - **TopControlPanel.jsx**: Controls and filters
+  - **data/countries.js**: Country data utilities
+  - **stores/useAppStore.js**: Global state management
+  - **utils/attackGenerator.js**: Attack simulation logic
+  - **utils/statsCalculator.js**: Threat statistics calculations
+  - **App.jsx**: Main React app component
+  - **App.css**: Global styles
+  - **main.jsx**: Entry point
+- **index.html**: HTML template
+- **package.json**: Project dependencies and scripts
+- **package-lock.json**: Dependency lock file
+- **vite.config.js**: Vite build configuration
+- **README.md**: Project documentation
+
+---
+
+## Technologies Used
+
+- [React](https://react.dev/)
+- [D3.js](https://d3js.org/)
+- [TopoJSON](https://github.com/topojson/topojson)
+- [Vite](https://vitejs.dev/)
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v16+ recommended)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- Node.js (v16+ recommended)
+- npm or yarn
 
 ### Installation
 
@@ -107,21 +148,31 @@ The production build will be available in the `dist` folder.
 
 ---
 
-## File Overview
+## Usage
 
-- **public/**: Static assets & data files
-- **src/App.jsx**: Main React app component
-- **src/components/**: UI panels & map visualization
-- **vite.config.js**: Vite build configuration
+- **ThreatMap**: View global cyber threats on an interactive map.
+- **IPLookupPanel**: Enter an IP address to get geolocation and threat info.
+- **LiveAttacksPanel**: Watch simulated real-time cyber attacks.
+- **RandomDataPanel**: Generate and view random threat data.
+- **TopControlPanel**: Filter and control the map display.
+- **CountryStatsPanel**: See stats for selected countries.
+- **CustomizationPanel**: Customize map and UI settings.
 
 ---
 
-## Technologies Used
+## Data Sources
 
-- [React](https://react.dev/)
-- [D3.js](https://d3js.org/)
-- [TopoJSON](https://github.com/topojson/topojson)
-- [Vite](https://vitejs.dev/)
+- **countries-110m.json**: World map boundaries (Natural Earth)
+- **data.json**: Example threat events (customizable)
+- **src/data/countries.js**: Country metadata
+
+---
+
+## Scripts
+
+- `npm run dev` / `yarn dev`: Start development server
+- `npm run build` / `yarn build`: Build for production
+- `npm run preview` / `yarn preview`: Preview production build
 
 ---
 
@@ -134,7 +185,8 @@ MIT License
 ## Acknowledgements
 
 - World map data from [Natural Earth](https://www.naturalearthdata.com/)
+- D3.js and TopoJSON for map visualization
 
 ---
 
-_Cyber Threat Map – Visualize and analyze cyber attacks in real time!_
+_Cyber Threat Map – Visualize and analyze cyber attacks in real-time._

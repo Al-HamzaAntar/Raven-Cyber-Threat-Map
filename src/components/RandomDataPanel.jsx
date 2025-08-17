@@ -68,9 +68,9 @@ const RandomDataPanel = ({ onGenerate }) => {
             key={type}
             onClick={() => handleToggle(type)}
             style={{
-              background: selected[type] ? '#7ec3fa' : '#232526',
-              color: selected[type] ? '#232526' : '#7ec3fa',
-              border: selected[type] ? '1.5px solid #7ec3fa' : '1px solid #444',
+              background: selected[type] ? '#6b09ea' : '#262323',
+              color: selected[type] ? '#fff' : '#6b09ea',
+              border: selected[type] ? '1.5px solid #fff' : '1px solid #6b09ea',
               fontWeight: selected[type] ? 700 : 500,
             }}
           >

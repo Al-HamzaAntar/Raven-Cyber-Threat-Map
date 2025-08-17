@@ -7,7 +7,7 @@ import { getRandomCountry } from '../data/countries.js';
 const countryColors = {
   dark: '#2a2a2a',
   light: '#e0e0e0',
-  custom: '#2a2a40',
+  custom: '#6b09ea',
 };
 const strokeColors = {
   dark: '#444',
@@ -23,6 +23,9 @@ const bgColors = {
 const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, onNewAttack, customizations = {} }, ref) => {
   const svgRef = useRef();
   const rotationRef = useRef({ lambda: 0, phi: 0 });
+  const projectionRef = useRef();
+  const pathRef = useRef();
+  const activeAttacksRef = useRef([]);
 
   useImperativeHandle(ref, () => ({
     animateAttacks: (attacks, delay = 500) => {
@@ -34,6 +37,28 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
       });
     }
   }));
+
+  // Function to update all active attack paths
+  const updateAttackPaths = () => {
+    const svg = d3.select(svgRef.current);
+    activeAttacksRef.current.forEach(attackData => {
+      const { attack, arcElement } = attackData;
+      
+      // Recalculate arc path with current projection
+      const geoInterpolate = d3.geoInterpolate([attack.source.lon, attack.source.lat], [attack.target.lon, attack.target.lat]);
+      const arcPoints = [];
+      for (let i = 0; i <= 100; i++) {
+        const point = geoInterpolate(i / 100);
+        const projected = projectionRef.current(point);
+        if (projected) arcPoints.push(projected);
+      }
+      
+      if (arcPoints.length >= 2) {
+        const arcPath = d3.line().curve(d3.curveCardinal)(arcPoints);
+        arcElement.attr('d', arcPath);
+      }
+    });
+  };
 
   useEffect(() => {
     const width = window.innerWidth * 0.75;
@@ -47,6 +72,7 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
       .style('background', bgColors[theme]);
 
     svg.selectAll('*').remove();
+    activeAttacksRef.current = []; // Clear active attacks
     
     // Create orthographic projection for globe effect
     const projection = d3.geoOrthographic()
@@ -54,7 +80,9 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
       .translate([width / 2, height / 2])
       .clipAngle(90);
     
+    projectionRef.current = projection;
     const path = d3.geoPath().projection(projection);
+    pathRef.current = path;
     const g = svg.append('g');
 
     // Create graticule (grid lines)
@@ -86,6 +114,7 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
         const { transform } = event;
         projection.scale(radius * transform.k);
         g.selectAll('path').attr('d', path);
+        updateAttackPaths(); // Update attack paths on zoom
       });
 
     svg.call(zoom);
@@ -112,6 +141,7 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
         
         projection.rotate(rotation);
         g.selectAll('path').attr('d', path);
+        updateAttackPaths(); // Update attack paths on rotation
       });
 
     svg.call(drag);
@@ -147,27 +177,24 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
       rotation[0] += 0.1;
       projection.rotate(rotation);
       g.selectAll('path').attr('d', path);
+      updateAttackPaths(); // Update attack paths on auto-rotation
     };
 
     // Uncomment the line below to enable auto-rotation
-    // const rotationInterval = setInterval(autoRotate, 50);
+    const rotationInterval = setInterval(autoRotate, 100);
 
     // Cleanup function
     return () => {
-      // clearInterval(rotationInterval);
+      clearInterval(rotationInterval);
+      activeAttacksRef.current = [];
     };
   }, [theme, customizations]);
 
   function drawAttack(attack) {
-    const width = window.innerWidth * 0.75;
-    const height = window.innerHeight * 0.85;
-    const radius = Math.min(width, height) / 2.5;
     const svg = d3.select(svgRef.current);
+    const projection = projectionRef.current;
     
-    const projection = d3.geoOrthographic()
-      .scale(radius)
-      .translate([width / 2, height / 2])
-      .clipAngle(90);
+    if (!projection) return;
 
     const source = projection([attack.source.lon, attack.source.lat]);
     const target = projection([attack.target.lon, attack.target.lat]);
@@ -209,6 +236,10 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
       .attr('stroke-dashoffset', function () { return this.getTotalLength(); })
       .on('click', () => onAttackSelect && onAttackSelect(attack));
     
+    // Store attack data for rotation updates
+    const attackData = { attack, arcElement: arc };
+    activeAttacksRef.current.push(attackData);
+    
     // Add glow effect
     arc.style('filter', 'drop-shadow(0 0 3px ' + color + ')');
     
@@ -222,6 +253,13 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
           .transition()
           .duration(1000)
           .attr('opacity', 0)
+          .on('end', function() {
+            // Remove from active attacks array
+            const index = activeAttacksRef.current.findIndex(item => item.arcElement.node() === this);
+            if (index > -1) {
+              activeAttacksRef.current.splice(index, 1);
+            }
+          })
           .remove();
       });
     

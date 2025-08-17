@@ -1,5 +1,5 @@
 body, .App {
-  background: #181a1b;
+  background: #1b1819;
   color: #e0e0e0;
   font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
   margin: 0;
@@ -30,7 +30,7 @@ header {
 }
 
 .panel-title {
-  color: #7ec3fa;
+  color: #6b09ea;
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
@@ -91,14 +91,14 @@ input, select, button {
   transition: border 0.2s;
 }
 input:focus, select:focus, button:focus {
-  border: 1.5px solid #7ec3fa;
+  border: 1.5px solid #6b09ea;
 }
 button {
   cursor: pointer;
   font-weight: 500;
   background: #232526;
-  color: #7ec3fa;
-  border: 1px solid #444;
+  color: #6b09ea;
+  border: 1px solid #fff;
   transition: background 0.2s, color 0.2s;
 }
 button:hover {
@@ -127,7 +127,7 @@ button:hover {
   border-bottom: 1px solid #333;
 }
 .live-attacks-table th {
-  color: #7ec3fa;
+  color: #6b09ea;
   font-weight: 600;
   background: #232526;
 }
@@ -151,7 +151,7 @@ button:hover {
   text-align: center;
   font-weight: bold;
   background: #232526;
-  color: #7ec3fa;
+  color: #6b09ea;
   border-radius: 50%;
   border: 1px solid #444;
   margin: 0 0.3em;
@@ -160,7 +160,7 @@ button:hover {
 
 /* For arrow between source and target */
 .arrow {
-  color: #7ec3fa;
+  color: #6b09ea;
   font-size: 1.2em;
   margin: 0 0.5em;
 }

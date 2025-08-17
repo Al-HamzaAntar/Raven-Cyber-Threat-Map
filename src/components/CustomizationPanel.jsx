@@ -7,7 +7,7 @@ const CustomizationPanel = ({ theme }) => {
   
   const [selectedCountry, setSelectedCountry] = useState('US');
   const [selectedCity, setSelectedCity] = useState('');
-  const [color, setColor] = useState('#7ec3fa');
+  const [color, setColor] = useState('#6b09ea');
   const [customizationType, setCustomizationType] = useState('country'); // 'country' or 'city'
 
   const handleApply = () => {

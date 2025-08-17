@@ -89,7 +89,7 @@ function App() {
       </div>
       {/* Floating attack info at bottom center */}
       {selectedAttack && (
-        <div style={{position:'absolute',bottom:10,left:'50%',transform:'translateX(-50%)',background:'#232526cc',color:'#e0e0e0',padding:'0.7em 2em',borderRadius:8,boxShadow:'0 2px 16px #000a',zIndex:12,fontSize:'1.1em',display:'flex',gap:40,alignItems:'center'}}>
+        <div style={{position:'absolute',bottom:10,left:'50%',transform:'translateX(-50%)',background:'#6b09ea',color:'#e0e0e0',padding:'0.7em 2em',borderRadius:8,boxShadow:'0 2px 16px #000a',zIndex:12,fontSize:'1.1em',display:'flex',gap:40,alignItems:'center'}}>
           <div>{new Date(selectedAttack.timestamp).toLocaleString()}</div>
           <div className="country-code">{selectedAttack.source.countryCode || '--'}</div>
           <div>City: {selectedAttack.source.city} <br/>Country: {selectedAttack.source.country}</div>

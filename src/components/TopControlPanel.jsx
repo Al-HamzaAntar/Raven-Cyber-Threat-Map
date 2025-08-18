@@ -27,7 +27,7 @@ const TopControlPanel = ({ theme, setTheme, mode, setMode, onToggleRandomData, o
       <button title="Theme: Custom" onClick={() => setTheme('custom')}><span style={{background:'#6b09ea',width:16,height:16,display:'inline-block',borderRadius:4}}></span></button>
       <div style={{display:'flex', alignItems:'center', gap:8, marginLeft: 10}}>
       <span style={{marginLeft:8, fontWeight:600}}>Deep Safer</span>
-      <img src="../../public/assets/deepsafer.png" alt="logo" width={'30px'} style={{borderRadius:4}}/>
+      <img src="/assets/deepsafer.png" alt="logo" width={'30px'} style={{borderRadius:4}}/>
       </div>
     </div>
   );

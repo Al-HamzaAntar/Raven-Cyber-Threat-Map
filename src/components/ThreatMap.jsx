@@ -12,7 +12,7 @@ const countryColors = {
 const strokeColors = {
   dark: '#444',
   light: '#aaa',
-  custom: '#4e4e7e',
+  custom: '#5900ffff',
 };
 const bgColors = {
   dark: '#0a0a0a',

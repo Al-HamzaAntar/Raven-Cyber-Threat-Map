@@ -97,7 +97,7 @@ const ThreatMap = forwardRef(({ theme = 'dark', mode = 'live', onAttackSelect, o
       .style('stroke', theme === 'dark' ? '#333' : '#ccc')
       .style('stroke-width', 1);
 
-    // Add graticule lines
+    // Add graticule lines 
     g.append('path')
       .datum(graticule)
       .attr('class', 'graticule')

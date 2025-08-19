@@ -19,12 +19,14 @@ header {
 }
 
 .panel {
-  background: #232526;
+  background: rgba(255,255,255,0);
+  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 8px;
-  box-shadow: 0 2px 16px 0 #000a;
   padding: 1rem;
   margin: 0.5rem;
-  color: #e0e0e0;
+  color: #706c6c;
   font-size: 0.98rem;
   border: 1px solid #333;
 }
@@ -71,16 +73,23 @@ header {
   top: 2vh;
   display: flex;
   align-items: center;
-  background: #232526;
+  background: rgba(255,255,255,0);
+  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 8px;
-  box-shadow: 0 2px 16px 0 #000a;
+  border: #333333 solid 1px ;
+  color: #5a5a5a;
+
   padding: 0.5rem 1.5rem;
   z-index: 20;
   gap: 0.7rem;
 }
 
 input, select, button {
-  background: #232526;
+  background: rgba(255,255,255,0);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: #e0e0e0;
   border: 1px solid #333;
   border-radius: 4px;
@@ -96,22 +105,33 @@ input:focus, select:focus, button:focus {
 button {
   cursor: pointer;
   font-weight: 500;
-  background: #232526;
+  background: rgba(255,255,255,0);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   color: #6b09ea;
   border: 1px solid #6b09ea;
   transition: background 0.2s, color 0.2s;
 }
 button:hover {
-  background: #2a2a40;
-  color: #fff;
+  /* background: #2a2a40; */
+  background: rgba(255,255,255,0);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #6b09ea;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #232526;
+  background: rgba(255,255,255,0);
+  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #6b09ea;
+  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border-radius: 4px;
 }
 

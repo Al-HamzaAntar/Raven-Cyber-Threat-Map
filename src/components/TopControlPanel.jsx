@@ -24,16 +24,50 @@ const TopControlPanel = ({ theme, setTheme, mode, setMode, onToggleRandomData, o
 
   return (
     <div className="top-control-panel flex gap">
-      <button title="List" onClick={handleListClick} style={{color: '#6b09ea'}}><span><TiThMenu /></span></button>
-      <button title="Replay" onClick={handleReplayClick} style={{color: '#6b09ea'}}><span><GrRefresh /></span></button>
-      <button title="Live" onClick={handleLiveClick} style={{color: '#6b09ea'}}><span><HiOutlineSwitchHorizontal /></span></button>
-      <button title="Check IP or Mobile" onClick={handlePenClick} style={{color: '#6b09ea'}}><span role="img" aria-label="pen"><FaPen /></span></button>
-      <button title="Theme: Dark" onClick={() => setTheme('dark')}><span><BsMoonFill /></span></button>
-      <button title="Theme: Light" onClick={() => setTheme('light')}><span><ImSun /></span></button>
-      <button title="Theme: Custom" onClick={() => setTheme('custom')}><span style={{background:'#6b09ea',width:16,height:16,display:'inline-block',borderRadius:4}}></span></button>
-      <div style={{display:'flex', alignItems:'center', gap:8, marginLeft: 10}}>
-      <span style={{marginLeft:8, fontWeight:600}}>Deep Safer</span>
-      <img src="/assets/deepsafer.png" alt="logo" width={'30px'} style={{borderRadius:4}}/>
+      <button title="List" onClick={handleListClick} className="secondary">
+        <TiThMenu />
+      </button>
+      <button title="Replay" onClick={handleReplayClick} className="secondary">
+        <GrRefresh />
+      </button>
+      <button title="Live" onClick={handleLiveClick} className="secondary">
+        <HiOutlineSwitchHorizontal />
+      </button>
+      <button title="Check IP or Mobile" onClick={handlePenClick} className="secondary">
+        <FaPen />
+      </button>
+      <button title="Theme: Dark" onClick={() => setTheme('dark')}>
+        <BsMoonFill />
+      </button>
+      <button title="Theme: Light" onClick={() => setTheme('light')}>
+        <ImSun />
+      </button>
+      <button title="Theme: Custom" onClick={() => setTheme('custom')}>
+        <span style={{
+          background: 'var(--primary-gradient)',
+          width: 16,
+          height: 16,
+          display: 'inline-block',
+          borderRadius: 'var(--radius-sm)'
+        }}></span>
+      </button>
+      <div className="flex" style={{ marginLeft: 'var(--space-4)' }}>
+        <span style={{ 
+          marginLeft: 'var(--space-2)', 
+          fontWeight: 600,
+          color: 'var(--gray-100)'
+        }}>
+          Deep Safer
+        </span>
+        <img 
+          src="/assets/deepsafer.png" 
+          alt="logo" 
+          width="30px" 
+          style={{ 
+            borderRadius: 'var(--radius-sm)',
+            marginLeft: 'var(--space-2)'
+          }}
+        />
       </div>
     </div>
   );

@@ -87,15 +87,23 @@ function App() {
           customizations={customizations}
         />
       </div>
-      {/* Floating attack info at bottom center */}
+      {/* Enhanced floating attack info */}
       {selectedAttack && (
-        <div style={{position:'absolute',bottom:10,left:'50%',transform:'translateX(-50%)',background:'#6b09ea',color:'#e0e0e0',padding:'0.7em 2em',borderRadius:8,boxShadow:'0 2px 16px #000a',zIndex:12,fontSize:'1.1em',display:'flex',gap:40,alignItems:'center'}}>
-          <div>{new Date(selectedAttack.timestamp).toLocaleString()}</div>
+        <div className="attack-info">
+          <div className="timestamp">
+            {new Date(selectedAttack.timestamp).toLocaleString()}
+          </div>
           <div className="country-code">{selectedAttack.source.countryCode || '--'}</div>
-          <div>City: {selectedAttack.source.city} <br/>Country: {selectedAttack.source.country}</div>
+          <div className="location">
+            <strong>From:</strong> {selectedAttack.source.city}<br/>
+            <span>{selectedAttack.source.country}</span>
+          </div>
           <div className="arrow">→</div>
           <div className="country-code">{selectedAttack.target.countryCode || '--'}</div>
-          <div>City: {selectedAttack.target.city} <br/>Country: {selectedAttack.target.country}</div>
+          <div className="location">
+            <strong>To:</strong> {selectedAttack.target.city}<br/>
+            <span>{selectedAttack.target.country}</span>
+          </div>
         </div>
       )}
     </div>

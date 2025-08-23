@@ -44,7 +44,7 @@ const TopControlPanel = ({ theme, setTheme, mode, setMode, onToggleRandomData, o
       </button>
       <button title="Theme: Custom" onClick={() => setTheme('custom')}>
         <span style={{
-          background: 'var(--primary-gradient)',
+          background: 'var(--gray-50)',
           width: 16,
           height: 16,
           display: 'inline-block',
@@ -55,14 +55,14 @@ const TopControlPanel = ({ theme, setTheme, mode, setMode, onToggleRandomData, o
         <span style={{ 
           marginLeft: 'var(--space-2)', 
           fontWeight: 600,
-          color: 'var(--gray-100)'
+          color: 'var(--gray-400)'
         }}>
           Deep Safer
         </span>
         <img 
           src="/assets/deepsafer.png" 
           alt="logo" 
-          width="30px" 
+          width="45px" 
           style={{ 
             borderRadius: 'var(--radius-sm)',
             marginLeft: 'var(--space-2)'

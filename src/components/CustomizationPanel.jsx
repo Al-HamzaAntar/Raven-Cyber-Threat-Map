@@ -58,7 +58,7 @@ const CustomizationPanel = ({ theme }) => {
             <select 
               value={selectedCountry} 
               onChange={e => setSelectedCountry(e.target.value)}
-              style={{marginLeft:0}}
+              style={{marginLeft:0, width: '100%'}}
             >
               {countries.map(c => (
                 <option key={c.code} value={c.code}>

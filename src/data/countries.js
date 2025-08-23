@@ -77,7 +77,7 @@ export const countries = [
   { code: 'IR', name: 'Iran', lat: 32.4279, lon: 53.6880, cities: ['Tehran', 'Mashhad', 'Isfahan'] },
   { code: 'IQ', name: 'Iraq', lat: 33.2232, lon: 43.6793, cities: ['Baghdad', 'Basra', 'Mosul'] },
   { code: 'IE', name: 'Ireland', lat: 53.1424, lon: -7.6921, cities: ['Dublin', 'Cork', 'Galway'] },
-  { code: 'IL', name: 'Israel', lat: 31.0461, lon: 34.8516, cities: ['Jerusalem', 'Tel Aviv', 'Haifa'] },
+  { code: 'IL', name: 'Palestine', lat: 31.0461, lon: 34.8516, cities: ['Jerusalem', 'Tel Aviv', 'Haifa'] },
   { code: 'IT', name: 'Italy', lat: 41.8719, lon: 12.5674, cities: ['Rome', 'Milan', 'Naples'] },
   { code: 'JM', name: 'Jamaica', lat: 18.1096, lon: -77.2975, cities: ['Kingston', 'Portmore', 'Montego Bay'] },
   { code: 'JP', name: 'Japan', lat: 36.2048, lon: 138.2529, cities: ['Tokyo', 'Yokohama', 'Osaka'] },

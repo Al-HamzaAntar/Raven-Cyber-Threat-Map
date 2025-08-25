@@ -9,7 +9,10 @@ const LiveAttacksPanel = ({ theme }) => {
   return (
     <div className={`panel live-attacks-panel theme-${theme}`}>
       <div className="panel-title">Live Attacks ({attacks.length})</div>
-      <div className="attacks-container">
+      <div
+        className="attacks-container"
+        style={{ overflowX: 'auto', maxWidth: '100%' }} // <-- horizontal scroll enabled
+      >
         {recentAttacks.length === 0 ? (
           <div className="no-attacks">No attacks detected yet</div>
         ) : (
